@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM System | Курсы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/courses.css">
+    <link rel="stylesheet" href="css/courses-adaptive.css">
+</head>
+<body>
+    <!-- Загрузчик страницы -->
+    <div class="page-loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Кнопка для разворачивания боковой панели в свернутом режиме -->
+    <button class="sidebar-toggle-collapsed">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Overlay для закрытия сайдбара на мобильных устройствах -->
+    <div class="sidebar-overlay"></div>
+    
+    <div class="dashboard-container">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="CRM Logo">
+                    <h2>CRM System</h2>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Панель управления</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Студенты</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mentors.html">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Менторы</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="courses.html">
+                            <i class="fas fa-book"></i>
+                            <span>Курсы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Платежи</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выйти</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Верхняя панель -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1>Курсы</h1>
+                    <nav class="breadcrumb">
+                        <a href="dashboard.html">Главная</a>
+                        <span>/</span>
+                        <span>Курсы</span>
+                    </nav>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="user-profile">
+                        <img src="assets/admin-avatar.jpg" alt="Admin">
+                        <div class="user-info">
+                            <h4>Администратор</h4>
+                            <span>Админ</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <section class="content-section">
+                <!-- Верхняя панель действий -->
+                <div class="action-bar">
+                    <div class="action-bar-left">
+                        <button class="btn btn-primary add-course-btn">
+                            <i class="fas fa-plus"></i> Добавить курс
+                        </button>
+                        <button class="btn btn-secondary filter-btn" id="advanced-filter-btn">
+                            <i class="fas fa-filter"></i> Фильтр
+                        </button>
+                    </div>
+                    <div class="filter-controls">
+                        <div class="filter-item category-filter">
+                            <label>Категория:</label>
+                            <div class="select-wrapper">
+                                <select class="form-select category-select" id="category-filter">
+                                    <option value="all">Все категории</option>
+                                    <option value="programming">Программирование</option>
+                                    <option value="design">Дизайн</option>
+                                    <option value="marketing">Маркетинг</option>
+                                    <option value="business">Бизнес</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="filter-item status-filter">
+                            <label>Статус:</label>
+                            <div class="select-wrapper">
+                                <select class="form-select status-select" id="status-filter">
+                                    <option value="all">Все</option>
+                                    <option value="active">Активный</option>
+                                    <option value="draft">Черновик</option>
+                                    <option value="archived">Архивный</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="filter-item search-filter">
+                            <input type="text" placeholder="Поиск по названию..." id="course-search">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="table">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <button class="view-btn" data-view="cards">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Вид: Таблица курсов (по умолчанию) -->
+                <div class="view-container active" id="table-view">
+                    <div class="data-card">
+                        <div class="card-header">
+                            <h2>Список курсов</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Название курса</th>
+                                            <th>Категория</th>
+                                            <th>Ментор</th>
+                                            <th>Студентов</th>
+                                            <th>Цена</th>
+                                            <th>Статус</th>
+                                            <th>Действия</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Курс 1 -->
+                                        <tr>
+                                            <td>
+                                                <div class="course-info">
+                                                    <img src="assets/course1.jpg" alt="JavaScript Pro">
+                                                    <div>
+                                                        <h4 class="name">JavaScript: Продвинутый уровень</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Программирование</td>
+                                            <td>Александр Иванов</td>
+                                            <td>42</td>
+                                            <td>$299</td>
+                                            <td><span class="status active">Активный</span></td>
+                                            <td>
+                                                <div class="actions">
+                                                    <button class="action-btn edit-btn">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete-btn">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Курс 2 -->
+                                        <tr>
+                                            <td>
+                                                <div class="course-info">
+                                                    <img src="assets/course2.jpg" alt="UX/UI Design">
+                                                    <div>
+                                                        <h4 class="name">UX/UI Дизайн: От новичка до профи</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Дизайн</td>
+                                            <td>Елена Петрова</td>
+                                            <td>36</td>
+                                            <td>$349</td>
+                                            <td><span class="status active">Активный</span></td>
+                                            <td>
+                                                <div class="actions">
+                                                    <button class="action-btn edit-btn">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete-btn">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                        <!-- Курс 3 -->
+                                        <tr>
+                                            <td>
+                                                <div class="course-info">
+                                                    <img src="assets/course3.jpg" alt="Digital Marketing">
+                                                    <div>
+                                                        <h4 class="name">Цифровой маркетинг и SMM</h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Маркетинг</td>
+                                            <td>Максим Сидоров</td>
+                                            <td>0</td>
+                                            <td>$199</td>
+                                            <td><span class="status draft">Черновик</span></td>
+                                            <td>
+                                                <div class="actions">
+                                                    <button class="action-btn edit-btn">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="action-btn delete-btn">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Вид: Карточки курсов -->
+                <div class="view-container" id="cards-view">
+                    <div class="data-card">
+                        <div class="card-header">
+                            <h2>Карточки курсов</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="course-cards">
+                                <!-- Карточка курса 1 -->
+                                <div class="course-card">
+                                    <div class="course-card-header">
+                                        <img src="assets/course1.jpg" alt="JavaScript Pro">
+                                        <span class="status active">Активный</span>
+                                    </div>
+                                    <div class="course-card-body">
+                                        <h3>JavaScript: Продвинутый уровень</h3>
+                                        <div class="course-category">
+                                            <i class="fas fa-folder"></i> Программирование
+                                        </div>
+                                        <div class="course-info-row">
+                                            <div class="info-item">
+                                                <i class="fas fa-user-graduate"></i>
+                                                <span>42 студента</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.9</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-mentor">
+                                            <img src="assets/mentor1.jpg" alt="Александр Иванов">
+                                            <span>Александр Иванов</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-card-footer">
+                                        <div class="course-price">$299</div>
+                                        <div class="course-actions">
+                                            <button class="action-btn edit-btn">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="action-btn delete-btn">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Карточка курса 2 -->
+                                <div class="course-card">
+                                    <div class="course-card-header">
+                                        <img src="assets/course2.jpg" alt="UX/UI Design">
+                                        <span class="status active">Активный</span>
+                                    </div>
+                                    <div class="course-card-body">
+                                        <h3>UX/UI Дизайн: От новичка до профи</h3>
+                                        <div class="course-category">
+                                            <i class="fas fa-folder"></i> Дизайн
+                                        </div>
+                                        <div class="course-info-row">
+                                            <div class="info-item">
+                                                <i class="fas fa-user-graduate"></i>
+                                                <span>36 студентов</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.8</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-mentor">
+                                            <img src="assets/mentor2.jpg" alt="Елена Петрова">
+                                            <span>Елена Петрова</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-card-footer">
+                                        <div class="course-price">$349</div>
+                                        <div class="course-actions">
+                                            <button class="action-btn edit-btn">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="action-btn delete-btn">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Карточка курса 3 -->
+                                <div class="course-card">
+                                    <div class="course-card-header">
+                                        <img src="assets/course3.jpg" alt="Digital Marketing">
+                                        <span class="status draft">Черновик</span>
+                                    </div>
+                                    <div class="course-card-body">
+                                        <h3>Цифровой маркетинг и SMM</h3>
+                                        <div class="course-category">
+                                            <i class="fas fa-folder"></i> Маркетинг
+                                        </div>
+                                        <div class="course-info-row">
+                                            <div class="info-item">
+                                                <i class="fas fa-user-graduate"></i>
+                                                <span>0 студентов</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <i class="fas fa-minus"></i>
+                                                <span>—</span>
+                                            </div>
+                                        </div>
+                                        <div class="course-mentor">
+                                            <img src="assets/mentor3.jpg" alt="Максим Сидоров">
+                                            <span>Максим Сидоров</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-card-footer">
+                                        <div class="course-price">$199</div>
+                                        <div class="course-actions">
+                                            <button class="action-btn edit-btn">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="action-btn delete-btn">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Вид: Сетка курсов -->
+                <div class="view-container" id="grid-view">
+                    <div class="data-card">
+                        <div class="card-header">
+                            <h2>Сетка курсов</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="course-grid">
+                                <!-- Ячейка сетки 1 -->
+                                <div class="grid-item">
+                                    <div class="grid-item-inner">
+                                        <div class="grid-item-image">
+                                            <img src="assets/course1.jpg" alt="JavaScript Pro">
+                                            <div class="grid-item-overlay">
+                                                <button class="action-btn edit-btn">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="grid-item-status active">Активный</div>
+                                        <div class="grid-item-content">
+                                            <h3>JavaScript: Продвинутый уровень</h3>
+                                            <div class="grid-item-details">
+                                                <div class="grid-item-category">Программирование</div>
+                                                <div class="grid-item-price">$299</div>
+                                            </div>
+                                            <div class="grid-item-footer">
+                                                <div class="grid-item-students">
+                                                    <i class="fas fa-user-graduate"></i> 42
+                                                </div>
+                                                <div class="grid-item-rating">
+                                                    <i class="fas fa-star"></i> 4.9
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Ячейка сетки 2 -->
+                                <div class="grid-item">
+                                    <div class="grid-item-inner">
+                                        <div class="grid-item-image">
+                                            <img src="assets/course2.jpg" alt="UX/UI Design">
+                                            <div class="grid-item-overlay">
+                                                <button class="action-btn edit-btn">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="grid-item-status active">Активный</div>
+                                        <div class="grid-item-content">
+                                            <h3>UX/UI Дизайн: От новичка до профи</h3>
+                                            <div class="grid-item-details">
+                                                <div class="grid-item-category">Дизайн</div>
+                                                <div class="grid-item-price">$349</div>
+                                            </div>
+                                            <div class="grid-item-footer">
+                                                <div class="grid-item-students">
+                                                    <i class="fas fa-user-graduate"></i> 36
+                                                </div>
+                                                <div class="grid-item-rating">
+                                                    <i class="fas fa-star"></i> 4.8
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Ячейка сетки 3 -->
+                                <div class="grid-item">
+                                    <div class="grid-item-inner">
+                                        <div class="grid-item-image">
+                                            <img src="assets/course3.jpg" alt="Digital Marketing">
+                                            <div class="grid-item-overlay">
+                                                <button class="action-btn edit-btn">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="grid-item-status draft">Черновик</div>
+                                        <div class="grid-item-content">
+                                            <h3>Цифровой маркетинг и SMM</h3>
+                                            <div class="grid-item-details">
+                                                <div class="grid-item-category">Маркетинг</div>
+                                                <div class="grid-item-price">$199</div>
+                                            </div>
+                                            <div class="grid-item-footer">
+                                                <div class="grid-item-students">
+                                                    <i class="fas fa-user-graduate"></i> 0
+                                                </div>
+                                                <div class="grid-item-rating">
+                                                    <i class="fas fa-minus"></i> —
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        </main>
+    </div>
+
+    <!-- Модальное окно для добавления/редактирования курса -->
+    <div class="modal" id="course-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Добавить курс</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="course-form">
+                    <input type="hidden" id="course-id">
+                    <div class="form-group">
+                        <label for="course-name">Название курса</label>
+                        <input type="text" id="course-name" class="form-control" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-category">Категория</label>
+                            <div class="select-wrapper">
+                                <select id="course-category" class="form-control">
+                                    <option value="programming">Программирование</option>
+                                    <option value="design">Дизайн</option>
+                                    <option value="marketing">Маркетинг</option>
+                                    <option value="business">Бизнес</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-status">Статус</label>
+                            <div class="select-wrapper">
+                                <select id="course-status" class="form-control">
+                                    <option value="active">Активный</option>
+                                    <option value="draft">Черновик</option>
+                                    <option value="archived">Архивный</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-price">Цена</label>
+                            <input type="number" id="course-price" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-duration">Продолжительность (недель)</label>
+                            <input type="number" id="course-duration" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-mentor">Ментор</label>
+                        <div class="select-wrapper">
+                            <select id="course-mentor" class="form-control">
+                                <option value="1">Александр Иванов</option>
+                                <option value="2">Елена Петрова</option>
+                                <option value="3">Максим Сидоров</option>
+                                <option value="4">Анна Козлова</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-description">Описание</label>
+                        <textarea id="course-description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-image">Изображение</label>
+                        <div class="file-upload">
+                            <input type="file" id="course-image" class="file-input">
+                            <label for="course-image" class="file-label">
+                                <i class="fas fa-upload"></i> Выберите файл
+                            </label>
+                            <span class="file-name">Файл не выбран</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-course">Отмена</button>
+                <button class="btn btn-primary" id="save-course">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для расширенных фильтров -->
+    <div class="modal" id="filter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Расширенные фильтры</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="filter-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="filter-category">Категория</label>
+                            <div class="select-wrapper">
+                                <select id="filter-category" class="form-control">
+                                    <option value="all">Все категории</option>
+                                    <option value="programming">Программирование</option>
+                                    <option value="design">Дизайн</option>
+                                    <option value="marketing">Маркетинг</option>
+                                    <option value="business">Бизнес</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-status">Статус</label>
+                            <div class="select-wrapper">
+                                <select id="filter-status" class="form-control">
+                                    <option value="all">Все статусы</option>
+                                    <option value="active">Активный</option>
+                                    <option value="draft">Черновик</option>
+                                    <option value="archived">Архивный</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-mentor">Ментор</label>
+                        <div class="select-wrapper">
+                            <select id="filter-mentor" class="form-control">
+                                <option value="all">Все менторы</option>
+                                <option value="1">Александр Иванов</option>
+                                <option value="2">Елена Петрова</option>
+                                <option value="3">Максим Сидоров</option>
+                                <option value="4">Анна Козлова</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="filter-price-min">Цена от</label>
+                            <input type="number" id="filter-price-min" class="form-control" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-price-max">Цена до</label>
+                            <input type="number" id="filter-price-max" class="form-control" value="1000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Рейтинг</label>
+                        <div class="rating-filter">
+                            <div class="rating-option active" data-rating="all">
+                                <span>Все</span>
+                            </div>
+                            <div class="rating-option" data-rating="4.5">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.5+</span>
+                            </div>
+                            <div class="rating-option" data-rating="4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>4.0+</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="reset-filters">Сбросить</button>
+                <button class="btn btn-primary" id="apply-filters">Применить</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/courses.js"></script>
+</body>
+</html>

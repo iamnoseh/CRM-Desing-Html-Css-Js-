@@ -1,0 +1,166 @@
+/* Адаптивные стили для страницы курсов */
+
+/* Адаптивность для разных устройств */
+@media (max-width: 1200px) {
+    /* Уменьшаем размер заголовков */
+    .card-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    /* Корректируем размеры карточек курсов */
+    .course-cards {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    /* Адаптируем размер сетки */
+    .course-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    /* Адаптируем таблицу */
+    .table th, .table td {
+        padding: 0.5rem;
+    }
+    
+    /* Убираем некоторые колонки на меньших экранах */
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+        display: none;
+    }
+    
+    /* Уменьшаем размеры иконок */
+    .action-btn {
+        width: 28px;
+        height: 28px;
+    }
+    
+    /* Корректируем отступы в фильтрах */
+    .filter-controls {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Убираем больше колонок для маленьких экранов */
+    .table th:nth-child(5),
+    .table td:nth-child(5) {
+        display: none;
+    }
+    
+    /* Стили для сайдбара на мобильных устройствах */
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        height: 100vh;
+        z-index: 1001;
+        transition: left 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        background-color: white;
+        width: 250px;
+        overflow-y: auto;
+    }
+    
+    .sidebar.mobile-open {
+        left: 0;
+        transform: translateX(0);
+    }
+    
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    .sidebar-toggle-collapsed {
+        display: flex;
+        position: fixed;
+        left: 1rem;
+        top: 1rem;
+        z-index: 99;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+    }
+    
+    .main-content {
+        padding-left: 0 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Адаптируем форму для маленьких экранов */
+    .form-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Адаптируем размер модальных окон */
+    .modal-content {
+        max-width: 100%;
+        margin: 0 0.5rem;
+    }
+    
+    /* Адаптируем карточки курсов */
+    .course-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Адаптируем сетку курсов */
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Уменьшаем отступы */
+    .card-body {
+        padding: 1rem;
+    }
+    
+    /* Адаптируем панель действий */
+    .action-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .view-controls {
+        align-self: flex-end;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Стили для корректного поведения контента при свернутой боковой панели */
+.sidebar-collapsed .main-content {
+    padding-left: 70px;
+}
+
+/* Анимация для плавного перехода при сворачивании/разворачивании */
+.main-content {
+    transition: padding-left 0.3s ease;
+}
+
+/* Добавляем отступ сверху для кнопки разворачивания на малых экранах */
+@media (max-width: 768px) {
+    .topbar {
+        padding-left: 60px;
+    }
+}

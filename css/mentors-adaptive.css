@@ -1,0 +1,186 @@
+/* Дополнительные стили для адаптивности при свернутой боковой панели */
+
+/* Обеспечиваем плавный переход всех элементов */
+.main-content {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Стили для плавного перехода при скрытии сайдбара */
+.sidebar-collapsed .data-card,
+.sidebar-collapsed .stats-row,
+.sidebar-collapsed .action-bar,
+.sidebar-collapsed .table-responsive,
+.sidebar-collapsed .pagination {
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Фиксируем минимальную ширину таблицы и карточек */
+.data-card {
+    min-width: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Добавляем дополнительные отступы для элементов при свернутой панели */
+.sidebar-collapsed .card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Убедимся, что таблица корректно растягивается */
+.table-responsive {
+    width: 100%;
+    display: block;
+}
+
+/* Исправление проблемы со скрытием содержимого при переходе */
+.sidebar-collapsed .main-content {
+    padding-left: 1.5rem;
+}
+
+/* Адаптивный размер для статистических карточек */
+.stats-row {
+    width: 100%;
+}
+
+/* Корректировки для мобильных устройств */
+@media (max-width: 768px) {
+    .sidebar-collapsed .main-content,
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .action-bar {
+        padding: 0.5rem;
+    }
+    
+    .stat-card {
+        min-width: 100%;
+    }
+    
+    /* Адаптация таблицы менторов */
+    .table th:nth-child(6),
+    .table td:nth-child(6),
+    .table th:nth-child(7),
+    .table td:nth-child(7) {
+        display: none;
+    }
+    
+    /* Адаптация панели фильтров */
+    .filter-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .filter-item {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .select-wrapper {
+        width: 100%;
+    }
+    
+    .status-select, 
+    .specialization-select {
+        width: 100%;
+    }
+    
+    /* Адаптация модальных окон */
+    .modal-dialog {
+        width: 95%;
+    }
+    
+    .input-row {
+        flex-direction: column;
+    }
+    
+    .input-row .form-group {
+        width: 100%;
+    }
+}
+
+/* Стили для расширенных фильтров */
+.range-field {
+    margin-top: 0.5rem;
+}
+
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.range-inputs input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+}
+
+.range-inputs span {
+    color: var(--text-light);
+}
+
+/* Стили для модального окна фильтров */
+.modal-dialog.modal-sm {
+    max-width: 400px;
+}
+
+#advanced-filter-form .form-group {
+    margin-bottom: 1rem;
+}
+
+#advanced-filter-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+#advanced-filter-form .form-select {
+    width: 100%;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+    outline: none;
+}
+
+/* Адаптация при различных размерах экрана */
+@media (max-width: 1200px) {
+    .stats-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+        display: none;
+    }
+    
+    .table-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .pagination {
+        margin-top: 0.5rem;
+    }
+    
+    .modal-header h3 {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM System | Менторы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/mentors.css">
+    <link rel="stylesheet" href="css/mentors-adaptive.css">
+</head>
+<body>
+    <!-- Загрузчик страницы -->
+    <div class="page-loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Кнопка для разворачивания боковой панели в свернутом режиме -->
+    <button class="sidebar-toggle-collapsed">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Overlay для закрытия сайдбара на мобильных устройствах -->
+    <div class="sidebar-overlay"></div>
+    
+    <div class="dashboard-container">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="CRM Logo">
+                    <h2>CRM System</h2>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Панель управления</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Студенты</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="mentors.html">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Менторы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="courses.html">
+                            <i class="fas fa-book"></i>
+                            <span>Курсы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Платежи</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выйти</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Верхняя панель -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1>Менторы</h1>
+                    <nav class="breadcrumb">
+                        <a href="dashboard.html">Главная</a>
+                        <span>/</span>
+                        <span>Менторы</span>
+                    </nav>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                        <div class="dropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <a href="#">Отметить все как прочитанные</a>
+                            </div>
+                            <ul class="dropdown-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-user-plus"></i>
+                                        <div>
+                                            <p>Новый ментор зарегистрирован</p>
+                                            <span>30 минут назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-star"></i>
+                                        <div>
+                                            <p>Новый отзыв о менторе</p>
+                                            <span>2 часа назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <div>
+                                            <p>Важное обновление системы</p>
+                                            <span>1 день назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="dropdown-footer">
+                                <a href="#">Показать все уведомления</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <img src="assets/admin-avatar.jpg" alt="Admin">
+                        <div class="user-info">
+                            <h4>Администратор</h4>
+                            <span>Админ</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <section class="content-section">
+                <!-- Верхняя панель действий -->
+                <div class="action-bar">
+                    <div class="action-bar-left">
+                        <button class="btn btn-primary add-mentor-btn">
+                            <i class="fas fa-plus"></i> Добавить ментора
+                        </button>
+                        <button class="btn btn-secondary filter-btn" id="advanced-filter-btn">
+                            <i class="fas fa-filter"></i> Расширенный фильтр
+                        </button>
+                    </div>
+                    <div class="filter-controls">
+                        <div class="filter-item status-filter">
+                            <label>Статус:</label>
+                            <div class="select-wrapper">
+                                <select class="form-select status-select" id="status-filter">
+                                    <option value="all">Все</option>
+                                    <option value="active">Активные</option>
+                                    <option value="inactive">Неактивные</option>
+                                    <option value="vacation">Отпуск</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="filter-item specialization-filter">
+                            <label>Специализация:</label>
+                            <div class="select-wrapper">
+                                <select class="form-select specialization-select" id="specialization-filter">
+                                    <option value="all">Все специализации</option>
+                                    <option value="frontend">Frontend</option>
+                                    <option value="backend">Backend</option>
+                                    <option value="design">Дизайн</option>
+                                    <option value="marketing">Маркетинг</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-bar-right">
+                        <div class="search-mentors">
+                            <input type="text" placeholder="Поиск по имени..." id="mentor-search">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <button class="btn btn-outline export-btn">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Карточки статистики менторов -->
+                <div class="stats-row">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>52</h3>
+                            <p>Всего менторов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>47</h3>
+                            <p>Активные менторы</p>
+                        </div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>246</h3>
+                            <p>Студентов у менторов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>4.8</h3>
+                            <p>Средний рейтинг</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Карточка данных с таблицей менторов -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <h2>Список менторов</h2>
+                        <div class="card-tools">
+                            <button class="btn btn-outline refresh-btn">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <div class="dropdown-filter">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="#" class="active">Все</a>
+                                    <a href="#">Активные в этом месяце</a>
+                                    <a href="#">Высокий рейтинг</a>
+                                    <a href="#">Новые менторы</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" id="select-all">
+                                        </th>
+                                        <th>ID</th>
+                                        <th>Ментор</th>
+                                        <th>Специализация</th>
+                                        <th>Опыт</th>
+                                        <th>Рейтинг</th>
+                                        <th>Студентов</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Ментор 1 -->
+                                    <tr class="mentor-row" data-specialization="frontend" data-rating="4.9" data-students="18">
+                                        <td>
+                                            <input type="checkbox" class="select-mentor">
+                                        </td>
+                                        <td>MT-1001</td>
+                                        <td>
+                                            <div class="mentor-info">
+                                                <img src="assets/mentor1.jpg" alt="Александр Иванов">
+                                                <div>
+                                                    <h4 class="name">Александр Иванов</h4>
+                                                    <p class="specialization">Frontend Developer</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Frontend</td>
+                                        <td>5 лет</td>
+                                        <td>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.9</span>
+                                            </div>
+                                        </td>
+                                        <td>18</td>
+                                        <td><span class="status active">Активный</span></td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="action-btn edit-btn" data-id="MT-1001">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn" data-id="MT-1001">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Ментор 2 -->
+                                    <tr class="mentor-row" data-specialization="backend" data-rating="4.8" data-students="15">
+                                        <td>
+                                            <input type="checkbox" class="select-mentor">
+                                        </td>
+                                        <td>MT-1002</td>
+                                        <td>
+                                            <div class="mentor-info">
+                                                <img src="assets/mentor2.jpg" alt="Елена Петрова">
+                                                <div>
+                                                    <h4 class="name">Елена Петрова</h4>
+                                                    <p class="specialization">Backend Developer</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Backend</td>
+                                        <td>7 лет</td>
+                                        <td>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.8</span>
+                                            </div>
+                                        </td>
+                                        <td>15</td>
+                                        <td><span class="status active">Активный</span></td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="action-btn edit-btn" data-id="MT-1002">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn" data-id="MT-1002">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Ментор 3 -->
+                                    <tr class="mentor-row" data-specialization="design" data-rating="4.7" data-students="12">
+                                        <td>
+                                            <input type="checkbox" class="select-mentor">
+                                        </td>
+                                        <td>MT-1003</td>
+                                        <td>
+                                            <div class="mentor-info">
+                                                <img src="assets/mentor3.jpg" alt="Максим Сидоров">
+                                                <div>
+                                                    <h4 class="name">Максим Сидоров</h4>
+                                                    <p class="specialization">UI/UX Designer</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Design</td>
+                                        <td>4 года</td>
+                                        <td>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.7</span>
+                                            </div>
+                                        </td>
+                                        <td>12</td>
+                                        <td><span class="status vacation">Отпуск</span></td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="action-btn edit-btn" data-id="MT-1003">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn" data-id="MT-1003">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Ментор 4 -->
+                                    <tr class="mentor-row" data-specialization="marketing" data-rating="4.6" data-students="10">
+                                        <td>
+                                            <input type="checkbox" class="select-mentor">
+                                        </td>
+                                        <td>MT-1004</td>
+                                        <td>
+                                            <div class="mentor-info">
+                                                <img src="assets/mentor4.jpg" alt="Анна Козлова">
+                                                <div>
+                                                    <h4 class="name">Анна Козлова</h4>
+                                                    <p class="specialization">Digital Marketing</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Marketing</td>
+                                        <td>6 лет</td>
+                                        <td>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.6</span>
+                                            </div>
+                                        </td>
+                                        <td>10</td>
+                                        <td><span class="status active">Активный</span></td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="action-btn edit-btn" data-id="MT-1004">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn" data-id="MT-1004">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <!-- Ментор 5 -->
+                                    <tr class="mentor-row" data-specialization="frontend" data-rating="4.5" data-students="14">
+                                        <td>
+                                            <input type="checkbox" class="select-mentor">
+                                        </td>
+                                        <td>MT-1005</td>
+                                        <td>
+                                            <div class="mentor-info">
+                                                <img src="assets/mentor5.jpg" alt="Дмитрий Новиков">
+                                                <div>
+                                                    <h4 class="name">Дмитрий Новиков</h4>
+                                                    <p class="specialization">Frontend Developer</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Frontend</td>
+                                        <td>3 года</td>
+                                        <td>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <span>4.5</span>
+                                            </div>
+                                        </td>
+                                        <td>14</td>
+                                        <td><span class="status inactive">Неактивный</span></td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="action-btn edit-btn" data-id="MT-1005">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="action-btn delete-btn" data-id="MT-1005">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-footer">
+                            <div class="showing-entries">
+                                Показано 5 из 52 менторов
+                            </div>
+                            <div class="pagination">
+                                <button class="pagination-btn" disabled>
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="pagination-btn active">1</button>
+                                <button class="pagination-btn">2</button>
+                                <button class="pagination-btn">3</button>
+                                <span>...</span>
+                                <button class="pagination-btn">10</button>
+                                <button class="pagination-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Модальное окно добавления/редактирования ментора -->
+    <div class="modal" id="mentor-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Добавить нового ментора</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="mentor-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <!-- Левая колонка -->
+                            <div class="col-md-8">
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="mentor-name">ФИО</label>
+                                        <input type="text" id="mentor-name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mentor-id">ID ментора</label>
+                                        <input type="text" id="mentor-id" name="id" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="mentor-email">Эл. почта</label>
+                                        <input type="email" id="mentor-email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mentor-phone">Телефон</label>
+                                        <input type="tel" id="mentor-phone" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="mentor-specialization">Специализация</label>
+                                        <select id="mentor-specialization" name="specialization" required>
+                                            <option value="">Выберите специализацию</option>
+                                            <option value="frontend">Frontend Developer</option>
+                                            <option value="backend">Backend Developer</option>
+                                            <option value="design">UI/UX Designer</option>
+                                            <option value="marketing">Digital Marketing</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mentor-experience">Опыт работы (лет)</label>
+                                        <input type="number" id="mentor-experience" name="experience" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="mentor-rate">Часовая ставка ($)</label>
+                                        <input type="number" id="mentor-rate" name="rate" min="0" step="0.01" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mentor-status">Статус</label>
+                                        <select id="mentor-status" name="status" required>
+                                            <option value="active">Активный</option>
+                                            <option value="inactive">Неактивный</option>
+                                            <option value="vacation">Отпуск</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mentor-bio">Краткая биография</label>
+                                    <textarea id="mentor-bio" name="bio" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <!-- Правая колонка -->
+                            <div class="col-md-4">
+                                <div class="form-group file-upload">
+                                    <label>Фото ментора</label>
+                                    <div class="upload-area">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p id="file-name">Нажмите, чтобы загрузить</p>
+                                        <input type="file" id="mentor-photo" name="photo" accept="image/*" hidden>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline modal-cancel">Отменить</button>
+                    <button class="btn btn-primary" id="save-mentor">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для расширенных фильтров -->
+    <div class="modal" id="advanced-filter-modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Расширенные фильтры</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="advanced-filter-form">
+                        <div class="form-group">
+                            <label for="filter-status">Статус</label>
+                            <select id="filter-status" class="form-select">
+                                <option value="all">Все</option>
+                                <option value="active">Активные</option>
+                                <option value="inactive">Неактивные</option>
+                                <option value="vacation">Отпуск</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-specialization">Специализация</label>
+                            <select id="filter-specialization" class="form-select">
+                                <option value="all">Все специализации</option>
+                                <option value="frontend">Frontend</option>
+                                <option value="backend">Backend</option>
+                                <option value="design">Design</option>
+                                <option value="marketing">Marketing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-experience">Опыт работы</label>
+                            <div class="range-field">
+                                <div class="range-inputs">
+                                    <input type="number" id="filter-experience-min" placeholder="От" class="form-control">
+                                    <span>-</span>
+                                    <input type="number" id="filter-experience-max" placeholder="До" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-rating">Рейтинг (минимум)</label>
+                            <input type="number" id="filter-rating-min" min="0" max="5" step="0.1" placeholder="Например: 4.5" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline reset-filter">Сбросить</button>
+                    <button class="btn btn-primary" id="apply-filter">Применить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/mentors.js"></script>
+</body>
+</html>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/students.css">
     <link rel="stylesheet" href="css/students-adaptive.css">
+    <link rel="stylesheet" href="css/advanced-filters.css">
 </head>
 <body>
     <!-- Загрузчик страницы -->
@@ -52,13 +53,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="mentors.html">
                             <i class="fas fa-chalkboard-teacher"></i>
-                            <span>Преподаватели</span>
+                            <span>Менторы</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="courses.html">
                             <i class="fas fa-book"></i>
                             <span>Курсы</span>
                         </a>
@@ -600,94 +601,144 @@
 
     <!-- Модальное окно добавления/редактирования студента -->
     <div class="modal" id="student-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Добавить студента</h2>
-                <button class="close-modal"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <form id="student-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="first-name">Имя</label>
-                            <input type="text" id="first-name" name="first-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="last-name">Фамилия</label>
-                            <input type="text" id="last-name" name="last-name" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="group">Группа</label>
-                            <select id="group" name="group" required>
-                                <option value="">Выберите группу</option>
-                                <option value="A-12">Группа A-12</option>
-                                <option value="D-05">Группа D-05</option>
-                                <option value="L-08">Группа L-08</option>
-                                <option value="M-10">Группа M-10</option>
-                                <option value="B-15">Группа B-15</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="course">Курс</label>
-                            <select id="course" name="course" required>
-                                <option value="">Выберите курс</option>
-                                <option value="programming">Программирование</option>
-                                <option value="design">Дизайн</option>
-                                <option value="marketing">Маркетинг</option>
-                                <option value="languages">Иностранные языки</option>
-                                <option value="business">Бизнес</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="balance">Баланс</label>
-                            <input type="number" id="balance" name="balance" step="0.01" value="0.00">
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Статус</label>
-                            <select id="status" name="status" required>
-                                <option value="active">Активный</option>
-                                <option value="inactive">Неактивный</option>
-                                <option value="overdue">Должник</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label for="notes">Примечания</label>
-                            <textarea id="notes" name="notes" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label for="student-photo">Фото студента</label>
-                            <div class="file-upload">
-                                <input type="file" id="student-photo" name="student-photo" accept="image/*">
-                                <label for="student-photo">
-                                    <i class="fas fa-upload"></i> Выберите файл
-                                </label>
-                                <span class="file-name">Файл не выбран</span>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Добавить нового студента</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="student-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <!-- Левая колонка -->
+                            <div class="col-md-8">
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="student-name">ФИО</label>
+                                        <input type="text" id="student-name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-id">ИД студента</label>
+                                        <input type="text" id="student-id" name="id" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="student-email">Эл. почта</label>
+                                        <input type="email" id="student-email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-phone">Телефон</label>
+                                        <input type="tel" id="student-phone" name="phone" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="student-course">Курс</label>
+                                        <select id="student-course" name="course" required>
+                                            <option value="">Выберите курс</option>
+                                            <option value="js">Веб-разработка</option>
+                                            <option value="python">Питон-разработка</option>
+                                            <option value="design">Дизайн</option>
+                                            <option value="marketing">Маркетинг</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-group">Группа</label>
+                                        <input type="text" id="student-group" name="group" required>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="form-group">
+                                        <label for="student-balance">Баланс</label>
+                                        <input type="number" id="student-balance" name="balance" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-status">Статус</label>
+                                        <select id="student-status" name="status" required>
+                                            <option value="active">Активный</option>
+                                            <option value="inactive">Неактивный</option>
+                                            <option value="overdue">Должник</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Правая колонка -->
+                            <div class="col-md-4">
+                                <div class="form-group file-upload">
+                                    <label>Фото студента</label>
+                                    <div class="upload-area">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p id="file-name">Нажмите, чтобы загрузить</p>
+                                        <input type="file" id="student-photo" name="photo" accept="image/*" hidden>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline modal-cancel">Отменить</button>
+                    <button class="btn btn-primary" id="save-student">Сохранить</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancel-student">Отмена</button>
-                <button class="btn btn-primary" id="save-student">Сохранить</button>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для расширенных фильтров -->
+    <div class="modal" id="advanced-filter-modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Расширенные фильтры</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="advanced-filter-form">
+                        <div class="form-group">
+                            <label for="filter-status">Статус</label>
+                            <select id="filter-status" class="form-select">
+                                <option value="all">Все</option>
+                                <option value="active">Активные</option>
+                                <option value="inactive">Неактивные</option>
+                                <option value="overdue">Должники</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-course">Курс</label>
+                            <select id="filter-course" class="form-select">
+                                <option value="all">Все курсы</option>
+                                <option value="js">Веб-разработка</option>
+                                <option value="python">Питон-разработка</option>
+                                <option value="design">Дизайн</option>
+                                <option value="marketing">Маркетинг</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-group">Группа</label>
+                            <select id="filter-group" class="form-select">
+                                <option value="all">Все группы</option>
+                                <option value="gr1">Группа 1</option>
+                                <option value="gr2">Группа 2</option>
+                                <option value="gr3">Группа 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-balance">Баланс</label>
+                            <div class="range-field">
+                                <div class="range-inputs">
+                                    <input type="number" id="filter-balance-min" placeholder="От" class="form-control">
+                                    <span>-</span>
+                                    <input type="number" id="filter-balance-max" placeholder="До" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline reset-filter">Сбросить</button>
+                    <button class="btn btn-primary" id="apply-filter">Применить</button>
+                </div>
             </div>
         </div>
     </div>

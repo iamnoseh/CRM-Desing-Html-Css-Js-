@@ -92,6 +92,143 @@ document.addEventListener('DOMContentLoaded', function() {
     checkMobileView();
     window.addEventListener('resize', checkMobileView);
     
+    // Функционал фильтров
+    // Обработка открытия модального окна расширенных фильтров
+    const advancedFilterBtn = document.getElementById('advanced-filter-btn');
+    const advancedFilterModal = document.getElementById('advanced-filter-modal');
+    const closeModalButtons = document.querySelectorAll('.modal-close, .modal-cancel');
+
+    if (advancedFilterBtn && advancedFilterModal) {
+        advancedFilterBtn.addEventListener('click', function() {
+            advancedFilterModal.classList.add('open');
+        });
+        
+        // Закрытие модального окна
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                if (modal) {
+                    modal.classList.remove('open');
+                }
+            });
+        });
+    }
+    
+    // Обработка быстрых фильтров
+    const statusFilter = document.getElementById('status-filter');
+    const courseFilter = document.getElementById('course-filter');
+    const studentSearch = document.getElementById('student-search');
+    
+    // Обработка модальных фильтров
+    const modalFilterStatus = document.getElementById('filter-status');
+    const modalFilterCourse = document.getElementById('filter-course');
+    const modalFilterGroup = document.getElementById('filter-group');
+    const modalFilterBalanceMin = document.getElementById('filter-balance-min');
+    const modalFilterBalanceMax = document.getElementById('filter-balance-max');
+    const applyFilterBtn = document.getElementById('apply-filter');
+    const resetFilterBtn = document.querySelector('.reset-filter');
+    
+    // Функция фильтрации студентов
+    function filterStudents() {
+        const students = document.querySelectorAll('.student-row');
+        const statusValue = statusFilter.value;
+        const courseValue = courseFilter.value;
+        const searchValue = studentSearch.value.toLowerCase();
+        
+        // Дополнительные фильтры из модального окна
+        const groupValue = modalFilterGroup ? modalFilterGroup.value : 'all';
+        const balanceMin = modalFilterBalanceMin && modalFilterBalanceMin.value ? parseFloat(modalFilterBalanceMin.value) : 0;
+        const balanceMax = modalFilterBalanceMax && modalFilterBalanceMax.value ? parseFloat(modalFilterBalanceMax.value) : Infinity;
+        
+        students.forEach(student => {
+            const studentStatus = student.querySelector('.status');
+            const studentName = student.querySelector('.student-info .name');
+            const studentCourse = student.querySelector('.student-info .course');
+            const studentGroup = student.dataset.group || '';
+            const studentBalance = parseFloat(student.dataset.balance || '0');
+            
+            // Проверка условий фильтрации
+            const matchesStatus = statusValue === 'all' || (studentStatus && studentStatus.classList.contains(statusValue));
+            const matchesCourse = courseValue === 'all' || (studentCourse && studentCourse.textContent.toLowerCase().includes(courseValue.toLowerCase()));
+            const matchesSearch = !searchValue || (studentName && studentName.textContent.toLowerCase().includes(searchValue));
+            const matchesGroup = groupValue === 'all' || studentGroup.includes(groupValue);
+            const matchesBalance = studentBalance >= balanceMin && studentBalance <= balanceMax;
+            
+            if (matchesStatus && matchesCourse && matchesSearch && matchesGroup && matchesBalance) {
+                student.style.display = '';
+            } else {
+                student.style.display = 'none';
+            }
+        });
+        
+        // Обновляем счетчик отображаемых студентов
+        updateStudentCount();
+    }
+    
+    // Функция обновления счетчика студентов
+    function updateStudentCount() {
+        const visibleStudents = document.querySelectorAll('.student-row[style="display: "]').length;
+        const totalStudents = document.querySelectorAll('.student-row').length;
+        const showingEntries = document.querySelector('.showing-entries');
+        
+        if (showingEntries) {
+            showingEntries.textContent = `Показано ${visibleStudents} из ${totalStudents} студентов`;
+        }
+    }
+    
+    // Добавляем обработчики событий для фильтров
+    if (statusFilter) {
+        statusFilter.addEventListener('change', filterStudents);
+    }
+    
+    if (courseFilter) {
+        courseFilter.addEventListener('change', filterStudents);
+    }
+    
+    if (studentSearch) {
+        studentSearch.addEventListener('input', filterStudents);
+    }
+    
+    // Применение и сброс расширенных фильтров
+    if (applyFilterBtn) {
+        applyFilterBtn.addEventListener('click', function() {
+            // Синхронизируем селекты с модальными фильтрами
+            if (statusFilter && modalFilterStatus) {
+                statusFilter.value = modalFilterStatus.value;
+            }
+            if (courseFilter && modalFilterCourse) {
+                courseFilter.value = modalFilterCourse.value;
+            }
+            
+            // Применяем фильтры
+            filterStudents();
+            
+            // Закрываем модальное окно
+            advancedFilterModal.classList.remove('open');
+        });
+    }
+    
+    if (resetFilterBtn) {
+        resetFilterBtn.addEventListener('click', function() {
+            // Сбрасываем все фильтры
+            if (statusFilter) statusFilter.value = 'all';
+            if (courseFilter) courseFilter.value = 'all';
+            if (studentSearch) studentSearch.value = '';
+            
+            if (modalFilterStatus) modalFilterStatus.value = 'all';
+            if (modalFilterCourse) modalFilterCourse.value = 'all';
+            if (modalFilterGroup) modalFilterGroup.value = 'all';
+            if (modalFilterBalanceMin) modalFilterBalanceMin.value = '';
+            if (modalFilterBalanceMax) modalFilterBalanceMax.value = '';
+            
+            // Применяем сброшенные фильтры
+            filterStudents();
+        });
+    }
+    
+    // Инициализируем счетчик студентов при загрузке
+    updateStudentCount();
+    
     // Добавление обработчиков для пунктов меню в боковой панели
     const sidebarMenuItems = document.querySelectorAll('.sidebar-menu ul li a');
     sidebarMenuItems.forEach(item => {
