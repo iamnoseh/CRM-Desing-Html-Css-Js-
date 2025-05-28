@@ -1,0 +1,61 @@
+/* Дополнительные стили для адаптивности при свернутой боковой панели */
+
+/* Обеспечиваем плавный переход всех элементов */
+.main-content {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+/* Стили для плавного перехода при скрытии сайдбара */
+.sidebar-collapsed .data-card,
+.sidebar-collapsed .stats-row,
+.sidebar-collapsed .action-bar,
+.sidebar-collapsed .table-responsive,
+.sidebar-collapsed .pagination {
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Фиксируем минимальную ширину таблицы и карточек */
+.data-card {
+    min-width: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Добавляем дополнительные отступы для элементов при свернутой панели */
+.sidebar-collapsed .card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Убедимся, что таблица корректно растягивается */
+.table-responsive {
+    width: 100%;
+    display: block;
+}
+
+/* Исправление проблемы со скрытием содержимого при переходе */
+.sidebar-collapsed .main-content {
+    padding-left: 1.5rem;
+}
+
+/* Адаптивный размер для статистических карточек */
+.stats-row {
+    width: 100%;
+}
+
+/* Корректировки для мобильных устройств */
+@media (max-width: 768px) {
+    .sidebar-collapsed .main-content,
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .action-bar {
+        padding: 0.5rem;
+    }
+    
+    .stat-card {
+        min-width: 100%;
+    }
+}

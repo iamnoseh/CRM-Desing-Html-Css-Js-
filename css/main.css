@@ -1,0 +1,579 @@
+/* Основные переменные и сброс стилей */
+:root {
+    --primary-color: #4e73df;
+    --primary-dark: #2e59d9;
+    --primary-light: #6f8bf7;
+    --secondary-color: #1cc88a;
+    --secondary-dark: #13a673;
+    --secondary-light: #3dd598;
+    --danger-color: #e74a3b;
+    --warning-color: #f6c23e;
+    --info-color: #36b9cc;
+    --dark-color: #2e384d;
+    --light-color: #f8f9fc;
+    --text-dark: #2e384d;
+    --text-light: #6c757d;
+    --text-muted: #858796;
+    --border-color: #e3e6f0;
+    --shadow-color: rgba(58, 59, 69, 0.15);
+    --shadow: 0 0.15rem 1.75rem 0 var(--shadow-color);
+    --border-radius: 0.35rem;
+    --card-border-radius: 0.75rem;
+    --transition-fast: 0.3s;
+    --transition-normal: 0.5s;
+    --transition-slow: 0.8s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-dark);
+    background-color: var(--light-color);
+    height: 100%;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+input, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Основной контейнер аутентификации */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #f8f9fc 0%, #eff1fa 100%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(78, 115, 223, 0.03) 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(28, 200, 138, 0.03) 0%, transparent 30%);
+    top: 0;
+    left: 0;
+}
+
+/* Карточка аутентификации (контейнер для форм) */
+.auth-card {
+    display: flex;
+    background-color: white;
+    box-shadow: var(--shadow);
+    border-radius: var(--card-border-radius);
+    width: 100%;
+    max-width: 1000px;
+    min-height: 600px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+/* Панели (левая и правая) */
+.auth-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 50%;
+    position: relative;
+    transition: transform var(--transition-normal) ease;
+}
+
+/* Левая панель (с формами) */
+.left-panel {
+    background-color: white;
+}
+
+/* Правая панель (с приветствием) */
+.right-panel {
+    background: linear-gradient(120deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Контейнер с формами */
+.auth-forms-container {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    min-height: 450px; /* Добавляем минимальную высоту */
+}
+
+/* Стили форм */
+.auth-form {
+    width: 100%;
+    transition: all 0.4s ease;
+}
+
+.login-form {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.register-form {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* При переключении на регистрацию */
+.auth-card.show-register .login-form {
+    display: none;
+    opacity: 0;
+}
+
+.auth-card.show-register .register-form {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+    position: relative;
+}
+
+/* Заголовки форм */
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Группы полей формы */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+    transition: color var(--transition-fast);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    font-size: 14px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: #f8f9fc;
+    color: var(--text-dark);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
+}
+
+.input-group input:focus + .input-icon {
+    color: var(--primary-color);
+}
+
+/* Переключатель видимости пароля */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.password-toggle:hover {
+    color: var(--primary-color);
+}
+
+/* Группа опций (запомнить меня и забыли пароль) */
+.options-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.forgot-password {
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.forgot-password:hover {
+    color: var(--primary-color);
+}
+
+/* Стили для кнопок */
+.btn {
+    padding: 12px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+}
+
+.btn i {
+    margin-left: 10px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-success {
+    background-color: var(--secondary-color);
+    color: white;
+    width: 100%;
+}
+
+.btn-success:hover {
+    background-color: var(--secondary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(28, 200, 138, 0.3);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+}
+
+.save-btn {
+    width: 100%;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.save-btn i {
+    font-size: 1.1em;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: white;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.auth-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Мобильный переключатель между формами */
+.mobile-switch {
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+}
+
+/* Контент приветствия */
+.welcome-content {
+    max-width: 350px;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: absolute;
+    visibility: hidden;
+}
+
+.welcome-content.active {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.auth-card.show-register .login-welcome {
+    opacity: 0;
+    transform: translateX(-50px);
+    visibility: hidden;
+}
+
+.auth-card.show-register .register-welcome {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.welcome-content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.welcome-content p {
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.welcome-subtext {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Декоративные элементы */
+.welcome-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.shape-1 {
+    width: 150px;
+    height: 150px;
+    top: -50px;
+    right: -50px;
+}
+
+.shape-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 50px;
+    left: 30px;
+}
+
+.shape-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 30%;
+    right: 20%;
+}
+
+/* Соглашение с условиями */
+.terms-agreement {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+.terms-agreement input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 991px) {
+    .auth-card {
+        flex-direction: column;
+        max-width: 500px;
+    }
+    
+    .auth-panel {
+        width: 100%;
+    }
+    
+    .right-panel {
+        order: -1;
+        padding: 30px;
+        max-height: 250px;
+    }
+    
+    .welcome-content {
+        position: relative;
+        max-width: 100%;
+    }
+    
+    .mobile-switch {
+        display: block;
+    }
+    
+    .btn-outline {
+        display: none;
+    }
+    
+    .register-form {
+        position: relative;
+        height: 0;
+        overflow: hidden;
+        transform: translateY(20px);
+    }
+    
+    .auth-card.show-register .register-form {
+        height: auto;
+        overflow: visible;
+        transform: translateY(0);
+    }
+    
+    .auth-card.show-register .login-form {
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    
+    .shape-1 {
+        width: 100px;
+        height: 100px;
+        top: -30px;
+        right: -30px;
+    }
+    
+    .shape-2 {
+        width: 60px;
+        height: 60px;
+        bottom: 30px;
+        left: 20px;
+    }
+    
+    .shape-3 {
+        width: 40px;
+        height: 40px;
+        bottom: 40%;
+        right: 15%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 10px;
+    }
+    
+    .auth-panel {
+        padding: 20px;
+    }
+    
+    .form-title {
+        font-size: 22px;
+    }
+    
+    .options-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .forgot-password {
+        margin-top: 10px;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.shape-1 {
+    animation: float 6s infinite ease-in-out;
+}
+
+.shape-2 {
+    animation: float 8s infinite ease-in-out;
+    animation-delay: 1s;
+}
+
+.shape-3 {
+    animation: float 7s infinite ease-in-out;
+    animation-delay: 2s;
+}

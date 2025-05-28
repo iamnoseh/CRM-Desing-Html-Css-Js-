@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM System | Студенты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/students.css">
+    <link rel="stylesheet" href="css/students-adaptive.css">
+</head>
+<body>
+    <!-- Загрузчик страницы -->
+    <div class="page-loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Кнопка для разворачивания боковой панели в свернутом режиме -->
+    <button class="sidebar-toggle-collapsed">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Overlay для закрытия сайдбара на мобильных устройствах -->
+    <div class="sidebar-overlay"></div>
+    
+    <div class="dashboard-container">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="CRM Logo">
+                    <h2>CRM System</h2>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Панель управления</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="students.html">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Студенты</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Преподаватели</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-book"></i>
+                            <span>Курсы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Группы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Финансы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Верхняя панель -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1>Студенты</h1>
+                    <nav class="breadcrumb">
+                        <a href="dashboard.html">Главная</a>
+                        <span>/</span>
+                        <span>Студенты</span>
+                    </nav>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                        <div class="dropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <a href="#">Отметить все как прочитанные</a>
+                            </div>
+                            <ul class="dropdown-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-user-plus"></i>
+                                        <div>
+                                            <p>Новый студент зарегистрирован</p>
+                                            <span>30 минут назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-money-bill"></i>
+                                        <div>
+                                            <p>Новый платеж получен</p>
+                                            <span>2 часа назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <div>
+                                            <p>Важное обновление системы</p>
+                                            <span>1 день назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <img src="assets/avatar.png" alt="User Avatar">
+                        <div class="user-info">
+                            <h4>Администратор</h4>
+                            <p>admin@example.com</p>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown">
+                            <ul>
+                                <li><a href="#"><i class="fas fa-user"></i> Профиль</a></li>
+                                <li><a href="#"><i class="fas fa-cog"></i> Настройки</a></li>
+                                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент страницы -->
+            <div class="content">
+                <!-- Верхняя панель действий -->
+                <div class="action-bar">
+                    <div class="action-bar-left">
+                        <button class="btn btn-primary add-student-btn">
+                            <i class="fas fa-plus"></i> Добавить студента
+                        </button>
+                        <button class="btn btn-secondary filter-btn" id="advanced-filter-btn">
+                            <i class="fas fa-filter"></i> Расширенный фильтр
+                        </button>
+                    </div>
+                    <div class="filter-controls">
+                        <div class="filter-item status-filter">
+                            <label>Статус:</label>
+                            <div class="select-wrapper">
+                                <select class="form-select status-select" id="status-filter">
+                                    <option value="all">Все</option>
+                                    <option value="active">Активные</option>
+                                    <option value="inactive">Неактивные</option>
+                                    <option value="overdue">Должники</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="filter-item course-filter">
+                            <label>Курс:</label>
+                            <div class="select-wrapper">
+                                <select class="form-select course-select" id="course-filter">
+                                    <option value="all">Все курсы</option>
+                                    <option value="javascript">Веб-разработка</option>
+                                    <option value="python">Питон-разработка</option>
+                                    <option value="design">Дизайн</option>
+                                    <option value="marketing">Маркетинг</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-bar-right">
+                        <div class="search-students">
+                            <input type="text" placeholder="Поиск по имени..." id="student-search">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <button class="btn btn-outline export-btn">
+                            <i class="fas fa-download"></i> Экспорт
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Карточки статистики студентов -->
+                <div class="stats-row">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>2,845</h3>
+                            <p>Всего студентов</p>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>2,654</h3>
+                            <p>Активные студенты</p>
+                        </div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>145</h3>
+                            <p>Групп</p>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>86</h3>
+                            <p>Должники</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Таблица студентов -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <h2>Список студентов</h2>
+                        <div class="card-tools">
+                            <select class="form-select">
+                                <option>10 записей</option>
+                                <option>25 записей</option>
+                                <option>50 записей</option>
+                                <option>100 записей</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="select-all">
+                                    </th>
+                                    <th>ID</th>
+                                    <th>Студент</th>
+                                    <th>Группа</th>
+                                    <th>Email</th>
+                                    <th>Телефон</th>
+                                    <th>Баланс</th>
+                                    <th>Статус</th>
+                                    <th>Дата регистрации</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1001</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student1.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Алексей Иванов</p>
+                                                <p class="course">Программирование</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа A-12</td>
+                                    <td>alex@example.com</td>
+                                    <td>+7 (900) 123-4567</td>
+                                    <td class="balance positive">$350.00</td>
+                                    <td><span class="status active">Активный</span></td>
+                                    <td>12.03.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1002</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student2.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Мария Петрова</p>
+                                                <p class="course">Дизайн</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа D-05</td>
+                                    <td>maria@example.com</td>
+                                    <td>+7 (900) 234-5678</td>
+                                    <td class="balance negative">-$120.00</td>
+                                    <td><span class="status overdue">Должник</span></td>
+                                    <td>15.02.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1003</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student3.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Денис Сидоров</p>
+                                                <p class="course">Иностранные языки</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа L-08</td>
+                                    <td>denis@example.com</td>
+                                    <td>+7 (900) 345-6789</td>
+                                    <td class="balance positive">$250.00</td>
+                                    <td><span class="status active">Активный</span></td>
+                                    <td>24.01.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1004</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student4.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Анна Козлова</p>
+                                                <p class="course">Маркетинг</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа M-10</td>
+                                    <td>anna@example.com</td>
+                                    <td>+7 (900) 456-7890</td>
+                                    <td class="balance positive">$180.00</td>
+                                    <td><span class="status active">Активный</span></td>
+                                    <td>03.04.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1005</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student5.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Игорь Новиков</p>
+                                                <p class="course">Бизнес</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа B-15</td>
+                                    <td>igor@example.com</td>
+                                    <td>+7 (900) 567-8901</td>
+                                    <td class="balance neutral">$0.00</td>
+                                    <td><span class="status inactive">Неактивный</span></td>
+                                    <td>18.03.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1006</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student6.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Светлана Смирнова</p>
+                                                <p class="course">Дизайн</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа D-07</td>
+                                    <td>svetlana@example.com</td>
+                                    <td>+7 (900) 123-5678</td>
+                                    <td class="balance positive">$420.00</td>
+                                    <td><span class="status active">Активный</span></td>
+                                    <td>05.04.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1007</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student7.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Александр Кузнецов</p>
+                                                <p class="course">Иностранные языки</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа L-11</td>
+                                    <td>alex.k@example.com</td>
+                                    <td>+7 (900) 234-5678</td>
+                                    <td class="balance negative">-$85.00</td>
+                                    <td><span class="status overdue">Должник</span></td>
+                                    <td>10.02.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1008</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student8.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Екатерина Иванова</p>
+                                                <p class="course">Программирование</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа A-14</td>
+                                    <td>ekaterina@example.com</td>
+                                    <td>+7 (900) 345-6789</td>
+                                    <td class="balance positive">$290.00</td>
+                                    <td><span class="status active">Активный</span></td>
+                                    <td>22.03.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1009</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student9.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Никита Волков</p>
+                                                <p class="course">Маркетинг</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа M-08</td>
+                                    <td>nikita@example.com</td>
+                                    <td>+7 (900) 456-7890</td>
+                                    <td class="balance positive">$150.00</td>
+                                    <td><span class="status active">Активный</span></td>
+                                    <td>15.01.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="select-item">
+                                    </td>
+                                    <td>#ST-1010</td>
+                                    <td>
+                                        <div class="student-info">
+                                            <img src="assets/student10.jpg" alt="Student">
+                                            <div>
+                                                <p class="name">Ольга Петрова</p>
+                                                <p class="course">Бизнес</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Группа B-12</td>
+                                    <td>olga@example.com</td>
+                                    <td>+7 (900) 567-8901</td>
+                                    <td class="balance neutral">$0.00</td>
+                                    <td><span class="status inactive">Неактивный</span></td>
+                                    <td>08.04.2025</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="action-btn"><i class="fas fa-eye"></i></button>
+                                            <button class="action-btn"><i class="fas fa-edit"></i></button>
+                                            <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-footer">
+                        <div class="showing-entries">
+                            Показано 1-5 из 2,845 записей
+                        </div>
+                        <div class="pagination">
+                            <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">4</button>
+                            <button class="pagination-btn">5</button>
+                            <span>...</span>
+                            <button class="pagination-btn">285</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно добавления/редактирования студента -->
+    <div class="modal" id="student-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Добавить студента</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="student-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">Имя</label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Фамилия</label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="group">Группа</label>
+                            <select id="group" name="group" required>
+                                <option value="">Выберите группу</option>
+                                <option value="A-12">Группа A-12</option>
+                                <option value="D-05">Группа D-05</option>
+                                <option value="L-08">Группа L-08</option>
+                                <option value="M-10">Группа M-10</option>
+                                <option value="B-15">Группа B-15</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Курс</label>
+                            <select id="course" name="course" required>
+                                <option value="">Выберите курс</option>
+                                <option value="programming">Программирование</option>
+                                <option value="design">Дизайн</option>
+                                <option value="marketing">Маркетинг</option>
+                                <option value="languages">Иностранные языки</option>
+                                <option value="business">Бизнес</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="balance">Баланс</label>
+                            <input type="number" id="balance" name="balance" step="0.01" value="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Статус</label>
+                            <select id="status" name="status" required>
+                                <option value="active">Активный</option>
+                                <option value="inactive">Неактивный</option>
+                                <option value="overdue">Должник</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="notes">Примечания</label>
+                            <textarea id="notes" name="notes" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="student-photo">Фото студента</label>
+                            <div class="file-upload">
+                                <input type="file" id="student-photo" name="student-photo" accept="image/*">
+                                <label for="student-photo">
+                                    <i class="fas fa-upload"></i> Выберите файл
+                                </label>
+                                <span class="file-name">Файл не выбран</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-student">Отмена</button>
+                <button class="btn btn-primary" id="save-student">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/students.js"></script>
+</body>
+</html>

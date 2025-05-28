@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM System | Панель управления</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Загрузчик страницы -->
+    <div class="page-loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Кнопка для разворачивания боковой панели в свернутом режиме -->
+    <button class="sidebar-toggle-collapsed">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="dashboard-container">
+        <!-- Боковое меню -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="assets/logo.png" alt="CRM Logo">
+                    <h2>CRM System</h2>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Панель управления</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Студенты</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Преподаватели</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-book"></i>
+                            <span>Курсы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Группы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Финансы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Верхняя панель -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <h1>Панель управления</h1>
+                    <nav class="breadcrumb">
+                        <a href="dashboard.html">Главная</a>
+                        <span>/</span>
+                        <span>Панель управления</span>
+                    </nav>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Поиск...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                        <div class="dropdown">
+                            <div class="dropdown-header">
+                                <h3>Уведомления</h3>
+                                <a href="#">Отметить все как прочитанные</a>
+                            </div>
+                            <ul class="dropdown-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-user-plus"></i>
+                                        <div>
+                                            <p>Новый студент зарегистрирован</p>
+                                            <span>30 минут назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-money-bill"></i>
+                                        <div>
+                                            <p>Новый платеж получен</p>
+                                            <span>2 часа назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <div>
+                                            <p>Важное обновление системы</p>
+                                            <span>1 день назад</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <img src="assets/avatar.png" alt="User Avatar">
+                        <div class="user-info">
+                            <h4>Администратор</h4>
+                            <p>admin@example.com</p>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown">
+                            <ul>
+                                <li><a href="#"><i class="fas fa-user"></i> Профиль</a></li>
+                                <li><a href="#"><i class="fas fa-cog"></i> Настройки</a></li>
+                                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Выход</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Контент страницы -->
+            <div class="content">
+                <!-- Статистические карточки -->
+                <div class="stats-row">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>2,845</h3>
+                            <p>Всего студентов</p>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                            <p class="stat-growth"><i class="fas fa-arrow-up"></i> 12.5% с прошлого месяца</p>
+                        </div>
+                        <div class="stat-chart">
+                            <canvas id="studentsTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>$52,100</h3>
+                            <p>Доход за месяц</p>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 68%"></div>
+                            </div>
+                            <p class="stat-growth"><i class="fas fa-arrow-up"></i> 8.3% с прошлого месяца</p>
+                        </div>
+                        <div class="stat-chart">
+                            <canvas id="revenueTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>145</h3>
+                            <p>Активные группы</p>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 62%"></div>
+                            </div>
+                            <p class="stat-growth"><i class="fas fa-arrow-up"></i> 5.1% с прошлого месяца</p>
+                        </div>
+                        <div class="stat-chart">
+                            <canvas id="groupsTrendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>89.5%</h3>
+                            <p>Оплаченные счета</p>
+                            <div class="stat-progress">
+                                <div class="progress-bar" style="width: 89.5%"></div>
+                            </div>
+                            <p class="stat-growth"><i class="fas fa-arrow-up"></i> 3.2% с прошлого месяца</p>
+                        </div>
+                        <div class="stat-chart">
+                            <canvas id="paymentsTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Диаграмма дохода по центрам -->
+                <div class="chart-row">
+                    <div class="chart-card wide">
+                        <div class="chart-header">
+                            <h2>Доход по центрам</h2>
+                            <div class="chart-actions">
+                                <div class="period-selector">
+                                    <button class="period-btn active" data-period="6m">6 мес.</button>
+                                    <button class="period-btn" data-period="1y">1 год</button>
+                                    <button class="period-btn" data-period="all">Все</button>
+                                </div>
+                                <div class="chart-view-options">
+                                    <button class="chart-view-btn active" data-view="line"><i class="fas fa-chart-line"></i></button>
+                                    <button class="chart-view-btn" data-view="bar"><i class="fas fa-chart-bar"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="centerIncomeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Посещаемость и финансы -->
+                <div class="chart-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2>Посещаемость занятий</h2>
+                            <div class="chart-actions">
+                                <div class="period-selector">
+                                    <button class="period-btn active" data-period="week">Неделя</button>
+                                    <button class="period-btn" data-period="month">Месяц</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="attendanceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2>Статистика оплат</h2>
+                            <div class="chart-actions">
+                                <div class="period-selector">
+                                    <button class="period-btn active" data-period="current">Текущий</button>
+                                    <button class="period-btn" data-period="previous">Предыдущий</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="paymentsStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Распределение групп и студентов -->
+                <div class="chart-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2>Группы по центрам</h2>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="groupsDistributionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2>Распределение студентов по курсам</h2>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="studentsDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Последние транзакции и активность -->
+                <div class="chart-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2>Последние транзакции</h2>
+                            <a href="#" class="view-all">Посмотреть все</a>
+                        </div>
+                        <div class="chart-body">
+                            <div class="transactions-list">
+                                <div class="transaction-item">
+                                    <img src="assets/avatar1.png" alt="Student 1">
+                                    <div class="transaction-details">
+                                        <h4>Алексей Петров</h4>
+                                        <p>Оплата за курс программирования</p>
+                                    </div>
+                                    <div class="transaction-amount success">
+                                        <p>+$450</p>
+                                        <small>Сегодня, 10:24</small>
+                                    </div>
+                                </div>
+                                <div class="transaction-item">
+                                    <img src="assets/avatar2.png" alt="Student 2">
+                                    <div class="transaction-details">
+                                        <h4>Мария Иванова</h4>
+                                        <p>Оплата за курс дизайна</p>
+                                    </div>
+                                    <div class="transaction-amount success">
+                                        <p>+$350</p>
+                                        <small>Сегодня, 09:15</small>
+                                    </div>
+                                </div>
+                                <div class="transaction-item">
+                                    <img src="assets/avatar3.png" alt="Student 3">
+                                    <div class="transaction-details">
+                                        <h4>Иван Сидоров</h4>
+                                        <p>Возврат за отмененное занятие</p>
+                                    </div>
+                                    <div class="transaction-amount danger">
+                                        <p>-$50</p>
+                                        <small>Вчера, 15:30</small>
+                                    </div>
+                                </div>
+                                <div class="transaction-item">
+                                    <img src="assets/avatar4.png" alt="Student 4">
+                                    <div class="transaction-details">
+                                        <h4>Елена Смирнова</h4>
+                                        <p>Оплата за курс маркетинга</p>
+                                    </div>
+                                    <div class="transaction-amount success">
+                                        <p>+$400</p>
+                                        <small>Вчера, 12:42</small>
+                                    </div>
+                                </div>
+                                <div class="transaction-item">
+                                    <img src="assets/avatar5.png" alt="Student 5">
+                                    <div class="transaction-details">
+                                        <h4>Дмитрий Козлов</h4>
+                                        <p>Оплата за курс английского</p>
+                                    </div>
+                                    <div class="transaction-amount success">
+                                        <p>+$320</p>
+                                        <small>23.05.2025, 17:38</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h2>Активность студентов</h2>
+                            <div class="chart-actions">
+                                <div class="period-selector">
+                                    <button class="period-btn active" data-period="week">Неделя</button>
+                                    <button class="period-btn" data-period="month">Месяц</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="studentActivityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
